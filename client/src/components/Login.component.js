@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "../componentsStyles/LoginRegister.module.css";
 import { useHistory } from "react-router-dom";
+import Logo from "../images/TallyLogo.png";
 
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -41,7 +42,7 @@ function Login(props) {
   return (
     <div className={styles.parent}>
       <div className={styles.child}>
-        <h1 className={styles.heading}>Login</h1>
+        <img src={Logo} className={styles.logoImg} alt="papu" />
         <form onSubmit={onSubmit}>
           <label className={styles.labels} htmlFor="email">
             Email:

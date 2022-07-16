@@ -62,13 +62,14 @@ router.route("/getresults").post(async (req, res) => {
 
 router.route("/addtest").post(async (req, res) => {
   var last = await test.find({}).sort("-pin").limit(1).exec();
-  var pin = last[0].pin + 100000;
+  var pin = parseInt(last[0].pin) + 10000;
 
   try {
     var obj = {
       ...req.body,
       pin: pin,
     };
+    await test.create(obj);
   } catch (err) {
     console.log(err);
     return res.status(400).send();

@@ -1,0 +1,57 @@
+.Menu input,
+button {
+  width: 300px;
+  height: 50px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.input {
+  opacity: 100%;
+}
+.mainBack {
+  height: 1000px;
+  /* background-color: rgb(255, 245, 248);` */
+  background-image: url("../images/tally.jpg");
+  display: flex;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.Quiz {
+  width: 500px;
+  height: max-content;
+  border-radius: 10px;
+  background-color: rgb(162, 85, 249);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  opacity: 70%;
+}
+
+h1 {
+  color: white;
+  margin-top: 60px;
+}
+
+#nextQuestion {
+  width: 200px;
+  margin-bottom: 60px;
+}
+
+h3 {
+  color: #ffffff;
+}
+.lata {
+  margin-top: 30px;
+  display: flex;
+  margin-bottom: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
