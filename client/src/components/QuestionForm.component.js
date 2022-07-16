@@ -74,9 +74,6 @@ const QuestionForm = () => {
       },
       body: JSON.stringify(obj),
     });
-    const res = await Axios.post("http://localhost:5000/api/test/nakul", {
-      pin: "651311",
-    });
   }
   return (
     <div>
