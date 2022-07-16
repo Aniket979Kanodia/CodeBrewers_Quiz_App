@@ -1,23 +1,3 @@
-.App {
-  text-align: center;
-  font-family: arial;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.Menu {
-  width: 500px;
-  height: 500px;
-  border-radius: 10px;
-  background-color: lightseagreen;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .Menu input,
 button {
   width: 300px;
@@ -27,6 +7,15 @@ button {
   border-radius: 5px;
   font-size: 20px;
 }
+.input {
+  opacity: 100%;
+}
+.mainBack {
+  height: 1000px;
+  /* background-color: rgb(255, 245, 248);` */
+  background-image: url("../images/tally.jpg");
+  display: flex;
+}
 
 button:hover {
   cursor: pointer;
@@ -34,42 +23,32 @@ button:hover {
 
 .Quiz {
   width: 500px;
-  height: 500px;
+  height: max-content;
   border-radius: 10px;
-  background-color: lightseagreen;
+  background-color: rgb(162, 85, 249);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 100px;
+  opacity: 70%;
 }
 
-.Menu,
-.Quiz,
-.EndScreen h1 {
+h1 {
   color: white;
-}
-
-.EndScreen {
-  width: 500px;
-  height: 500px;
-  border-radius: 10px;
-  background-color: lightseagreen;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin-top: 60px;
 }
 
 #nextQuestion {
   width: 200px;
+  margin-bottom: 60px;
 }
 
 h3 {
   color: #ffffff;
 }
 .lata {
-  margin-top: 20px;
+  margin-top: 30px;
   display: flex;
   margin-bottom: 10px;
   flex-direction: column;

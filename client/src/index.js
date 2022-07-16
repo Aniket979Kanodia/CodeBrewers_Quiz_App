@@ -7,8 +7,8 @@ import TestWindow from "./components/TestWindow.component";
 
 ReactDOM.render(
   <BrowserRouter>
-    {/* <App /> */}
-    <TestWindow />
+    <App />
+    {/* <TestWindow /> */}
     {/* <QuestionForm /> */}
   </BrowserRouter>,
   document.getElementById("root")

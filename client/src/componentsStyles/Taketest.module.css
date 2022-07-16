@@ -20,7 +20,8 @@ body {
 .taketest {
   margin: auto;
   background: white;
-  border: 2px solid black;
+  /* border: 2px solid black; */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   width: 40%;
   padding: 5% 5% 5% 5%;
@@ -49,6 +50,7 @@ body {
   border-radius: 4px;
   padding: 3.5% 5%;
   color: white;
+  margin-right: 60px;
 }
 
 @media screen and (max-width: 600px) {
@@ -61,4 +63,8 @@ body {
     padding: 5% 5% 5% 5%;
     line-height: 22px;
   }
+}
+.logoImg {
+  width: 400px;
+  margin-left: 7px;
 }

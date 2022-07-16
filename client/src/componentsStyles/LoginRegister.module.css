@@ -10,7 +10,7 @@
 }
 
 body {
-  background: #f1f1f1;
+  background: rgb(255, 245, 248);
 }
 
 .container {
@@ -29,7 +29,7 @@ body {
 .child {
   margin: auto;
   background: white;
-  border: 2px solid black;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   width: 35vw;
   height: auto;
@@ -67,6 +67,7 @@ body {
   border-radius: 4px;
   padding: 3.5% 5%;
   color: white;
+  margin-right: 70px;
 }
 
 @media screen and (max-width: 600px) {
@@ -131,4 +132,8 @@ body {
     border-radius: 4px;
     outline: none;
   }
+}
+.logoImg {
+  margin-left: 60px;
+  width: 300px;
 }

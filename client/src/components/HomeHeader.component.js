@@ -20,14 +20,14 @@ function Header(props) {
           {location.pathname === "/login" ||
           location.pathname === "/register" ? (
             <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-              Take Test
+              TAKE TEST
             </Link>
           ) : (
             <Link
               to="/login"
               style={{ textDecoration: "none", color: "white" }}
             >
-              Register/Login
+              REGISTER/LOGIN
             </Link>
           )}
         </div>

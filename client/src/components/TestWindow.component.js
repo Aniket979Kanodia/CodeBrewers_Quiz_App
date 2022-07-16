@@ -24,59 +24,66 @@ const TestWindow = () => {
     }
     console.log(score);
   };
-  async function collect() {
-    const res = await Axios.post("http://localhost:5000/api/test/nakul", {
-      pin: "47373420000",
-    });
-
-    setQuestions(res.data.questions);
-    console.log(res.data.questions);
+  useEffect(() => {
+    async function collect() {
+      const res = await Axios.post("http://localhost:5000/api/test/nakul", {
+        pin: "47373440000",
+      });
+      if (res) {
+        setQuestions(res.data.questions);
+        console.log(res.data.questions);
+      }
+    }
+    collect();
+  }, []);
+  if (Questions.length === 0) {
+    return <h1>Loading</h1>;
   }
-  collect();
-
   return (
-    <div className="Quiz">
-      <h1>{Questions[currentQuestion].question}</h1>
-      <div className="lata">
-        <button
-          onClick={() => {
-            chooseOption(Questions[currentQuestion].options[0]);
-          }}
-        >
-          {Questions[currentQuestion].options[0]}
-        </button>
-        <button
-          onClick={() => {
-            chooseOption(Questions[currentQuestion].options[1]);
-          }}
-        >
-          {Questions[currentQuestion].options[1]}
-        </button>
-        <button
-          onClick={() => {
-            chooseOption(Questions[currentQuestion].options[2]);
-          }}
-        >
-          {Questions[currentQuestion].options[2]}
-        </button>
-        <button
-          onClick={() => {
-            chooseOption(Questions[currentQuestion].options[3]);
-          }}
-        >
-          {Questions[currentQuestion].options[3]}
-        </button>
-      </div>
+    <div className="mainBack">
+      <div className="Quiz">
+        <h1>{Questions[currentQuestion].question}</h1>
+        <div className="lata">
+          <button
+            onClick={() => {
+              chooseOption(Questions[currentQuestion].options[0]);
+            }}
+          >
+            {Questions[currentQuestion].options[0]}
+          </button>
+          <button
+            onClick={() => {
+              chooseOption(Questions[currentQuestion].options[1]);
+            }}
+          >
+            {Questions[currentQuestion].options[1]}
+          </button>
+          <button
+            onClick={() => {
+              chooseOption(Questions[currentQuestion].options[2]);
+            }}
+          >
+            {Questions[currentQuestion].options[2]}
+          </button>
+          <button
+            onClick={() => {
+              chooseOption(Questions[currentQuestion].options[3]);
+            }}
+          >
+            {Questions[currentQuestion].options[3]}
+          </button>
+        </div>
 
-      {currentQuestion == Questions.length - 1 ? (
-        <button onClick={finishQuiz} id="nextQuestion">
-          Finish Quiz
-        </button>
-      ) : (
-        <button onClick={nextQuestion} id="nextQuestion">
-          Next Question
-        </button>
-      )}
+        {currentQuestion == Questions.length - 1 ? (
+          <button onClick={finishQuiz} id="nextQuestion">
+            Finish Quiz
+          </button>
+        ) : (
+          <button onClick={nextQuestion} id="nextQuestion">
+            Next Question
+          </button>
+        )}
+      </div>
     </div>
   );
 };

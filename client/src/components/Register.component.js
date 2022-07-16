@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../componentsStyles/LoginRegister.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Logo from "../images/TallyLogo.png";
 
 function Register() {
   const [name, setname] = useState("");
@@ -43,7 +44,8 @@ function Register() {
   return (
     <div className={styles.parent}>
       <div className={styles.child}>
-        <h1 className={styles.heading}>Register</h1>
+        <img src={Logo} className={styles.logoImg} alt="papu" />
+
         <form onSubmit={submithandler}>
           <label htmlFor="name" className={styles.labels}>
             Name:

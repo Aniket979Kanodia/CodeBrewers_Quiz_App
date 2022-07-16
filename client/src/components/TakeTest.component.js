@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../componentsStyles/Taketest.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Logo from "../images/TallyLogo.png";
 
 function Taketest() {
   let history = useHistory();
@@ -36,7 +37,7 @@ function Taketest() {
   return (
     <div className={styles.parent}>
       <div className={styles.taketest}>
-        <h1 className={styles.heading}>Take Test</h1>
+        <img src={Logo} className={styles.logoImg} alt="papu" />
         <br />
         <form onSubmit={submithandler}>
           <label className={styles.labels} htmlFor="name">
@@ -73,7 +74,7 @@ function Taketest() {
           />
           <br />
           <button type="submit" className={styles.buttons}>
-            Submit
+            Take Test
           </button>
           <br />
           <br />
