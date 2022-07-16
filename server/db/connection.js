@@ -28,8 +28,8 @@ const userSchema = new mongoose.Schema({
 const testSchema = new mongoose.Schema({
     // testId: Number,
     // startTime: Date,
-    // endTime: Date,
-   // duration: Number,
+     endDate: Date,
+    duration: Number,
     //response_code: Number,
    // adminId: Number,
    // users: Number,
@@ -41,12 +41,12 @@ const testSchema = new mongoose.Schema({
     }]
 })
 
-function insertTest(duration,questions){
+function insertTest(endDate,duration,questions){
     newTest= new testSchema({
         
-    
-   // duration: duration,
-    questions: questions
+    endDate: endDate,
+    duration: duration,
+    question: questions
     })
     newTest.save();
 }
