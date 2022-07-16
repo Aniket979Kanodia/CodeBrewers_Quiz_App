@@ -79,10 +79,11 @@ const QuestionForm = () => {
     });
   }
   return (
-    <div>
-      <div>
+    <div className={styles.form}>
+      <div className={styles.form_header}>  <h1>Add Test</h1></div>
+      <div className={styles.testDetails}>
         <label>
-          Last Date of Submition:
+          <div className={styles.Labels}>Last Date of Submition:</div>
           <input
             type="date"
             name=""
@@ -90,24 +91,31 @@ const QuestionForm = () => {
             onChange={(e) => {
               setendDate(e.target.value);
             }}
+            className={styles.inputDate}
           />
         </label>
-        <label>
-          Duration :
+        
+          <div className={styles.form_control}>
+          {/* <label>
+          Duration</label> */}
           <input
-            type="text"
+            type="number"
             name=""
             value={duration}
             onChange={(e) => {
               setduration(e.target.value);
             }}
+            className={styles.duration}
+            placeholder="Duration"
           />
-        </label>
+          </div>
+        
       </div>
       <div className={styles.questionSlot}>
+        <h3>Questions</h3>
         {questions.map((ele, id) => {
           return (
-            <div>
+            <div className={styles.form_control}>
               <input
                 onChange={(e) => {
                   addQuestion(id, e.target.value);
@@ -116,7 +124,7 @@ const QuestionForm = () => {
                 placeholder="Question Description"
                 value={ele.question}
               />
-              <ul>
+              
                 {ele.options.map((element, index) => {
                   return (
                     <div>
@@ -132,12 +140,13 @@ const QuestionForm = () => {
                     </div>
                   );
                 })}
-              </ul>
+              
               <select
                 onChange={(e) => {
                   answer(e.target.value, id);
                 }}
               >
+                <option value="4">Choose correct option</option>
                 <option value="0">A</option>
                 <option value="1">B</option>
                 <option value="2">C</option>
@@ -161,5 +170,9 @@ const QuestionForm = () => {
     </div>
   );
 };
+const labels = document.querySelectorAll('.form-control label');
 
+labels.forEach(label => {
+    label.innerHTML = label.innerText.split('').map((letter, idx) => `<span style="transition-delay: ${idx  * 50}ms">${letter}</span>`).join('')
+})
 export default QuestionForm;
