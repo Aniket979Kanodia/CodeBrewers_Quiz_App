@@ -3,33 +3,23 @@ const test = require("../models/test.model");
 const result = require("../models/result.model");
 const axios = require("axios");
 const verify = require("./verifyToken");
+const mongoose = require("mongoose");
 
-router.route("/").post(async (req, res) => {
-  const testid = req.body.pin;
-  const email = req.body.email.toLowerCase();
-  const doc = await test.findOne({ pin: testid }).exec();
-  if (!doc) {
+router.route("/nakul").post(async (req, res) => {
+  console.log(req.body);
+  const temp = await test.findOne({ pin: req.body.pin }).exec();
+  if (!temp) {
     return res.status(400).send({ message: "Test doesn't exist!" });
   }
-  if (Date.parse(doc.expiry) < Date.now()) {
+  if (Date.parse(temp.expiry) < Date.now()) {
     return res.status(400).send({ message: "Test has expired!! " });
   }
-  const check = await result.findOne({ pin: testid, email }).exec();
-  if (check) {
-    return res.status(400).send({ message: "Test already taken!" });
-  }
-  const questions = await axios.get("https://opentdb.com/api.php", {
-    params: {
-      amount: doc.amount,
-      category: doc.topic,
-    },
+  res.send({
+    message: "Test exists",
+    questions: temp.questions,
+    duration: temp.duration,
+    endDate: temp.endDate,
   });
-  questions.data.time = doc.time;
-  if (questions.data.response_code == 0) return res.send(questions.data);
-  else
-    return res
-      .status(400)
-      .send({ message: "Couldn't fetch test details. Try again!" });
 });
 
 router.route("/submittest").post(async (req, res) => {
@@ -45,9 +35,9 @@ router.route("/submittest").post(async (req, res) => {
     .catch((err) => res.status(400).json("error : " + err));
 });
 
-router.use("/gettests", verify);
-router.use("/getresults", verify);
-router.use("/addtest", verify);
+// router.use("/gettests", verify);
+// router.use("/getresults", verify);
+// router.use("/addtest", verify);
 
 router.route("/gettests").post(async (req, res) => {
   const email = req.user.email;
@@ -71,28 +61,19 @@ router.route("/getresults").post(async (req, res) => {
 });
 
 router.route("/addtest").post(async (req, res) => {
-  console.log(req.body);
-  const pin = (await test.countDocuments({}).exec()) + 1000;
-  const email = req.user.email.toLowerCase();
-  const amount = req.body.amount;
-  const topic = req.body.topic;
-  const time = req.body.time;
-  const expiry = Date.parse(req.body.expiry);
-  const created = Date.parse(req.body.created);
+  var last = await test.find({}).sort("-pin").limit(1).exec();
+  var pin = last[0].pin + 100000;
 
-  const newtest = new test({
-    pin,
-    email,
-    amount,
-    topic,
-    time,
-    expiry,
-    created,
-  });
-  newtest
-    .save()
-    .then(() => res.send("test added!"))
-    .catch((err) => res.status(400).json("error : " + err));
+  try {
+    var obj = {
+      ...req.body,
+      pin: pin,
+    };
+  } catch (err) {
+    console.log(err);
+    return res.status(400).send();
+  }
+  return res.send("test added!");
 });
 
 module.exports = router;

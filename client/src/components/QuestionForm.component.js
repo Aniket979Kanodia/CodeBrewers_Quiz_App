@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../componentsStyles/QuestionForm.module.css";
 import { useState } from "react";
+import Axios from "axios";
 
 const QuestionForm = () => {
   const [duration, setduration] = useState("");
@@ -57,10 +58,25 @@ const QuestionForm = () => {
     }
     setquestion(temp);
   }
-  function check() {
+  async function check() {
     console.log(endDate);
     console.log(duration);
     console.log(questions);
+    let obj = {
+      duration: duration,
+      endDate: endDate,
+      questions: questions,
+    };
+    const response = await fetch("http://localhost:5000/api/test/addtest", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    });
+    const res = await Axios.post("http://localhost:5000/api/test/nakul", {
+      pin: "651311",
+    });
   }
   return (
     <div>
@@ -68,7 +84,7 @@ const QuestionForm = () => {
         <label>
           Last Date of Submition:
           <input
-            type="text"
+            type="date"
             name=""
             value={endDate}
             onChange={(e) => {

@@ -29,6 +29,38 @@ const testRouter = require("./routes/test");
 app.use("/api/user", userRouter);
 app.use("/api/test", testRouter);
 
+const testSchema = new mongoose.Schema({
+  // testId: Number,
+  // startTime: Date,
+  endDate: Date,
+  duration: Number,
+  //response_code: Number,
+  // adminId: Number,
+  // users: Number,
+  questions: [
+    {
+      options: Array,
+      question: String,
+      correct_answer: String,
+      incorrect_answers: Array,
+    },
+  ],
+});
+
+app.use("/testing", async (req, res) => {
+  console.log(req.body);
+  const test = await testSchema.findOne({
+    endDate: req.body.endDate,
+    duration: req.body.duration,
+    questions: req.body.questions,
+  });
+  if (test) {
+    res.send("test already exists");
+  } else {
+    res.send("test not exists");
+  }
+});
+
 if (
   process.env.NODE_ENV === "production" ||
   process.env.NODE_ENV === "staging"
