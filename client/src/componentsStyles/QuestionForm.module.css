@@ -21,6 +21,8 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  
 }
 .testDetails {
   margin: 3%;
@@ -28,7 +30,7 @@ body {
 .form {
   width: 650px;
   min-height: 400px;
-  background: rgb(156, 77, 247);
+  background: rgb(233, 214, 255);
   border-radius: 5px;
   box-shadow: 0 0 5px rgb(0, 0, 1);
   padding: 40px 30px;
@@ -36,6 +38,7 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 100px;
+  opacity: 90%;
 }
 
 input[type="date"] {
@@ -43,7 +46,7 @@ input[type="date"] {
   position: relative;
   padding: 1rem 3.5rem 1rem 0.75rem;
 
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-family: monospace;
   color: black;
 
@@ -104,8 +107,8 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
   border: 0;
   border: 2px #fff solid;
   display: block;
-  width: 100%;
-  padding: 15px 0;
+  width: 40%;
+  padding: 15px 10px;
   font-size: 18px;
 }
 .form_control select {
@@ -122,13 +125,14 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
   position: relative;
   margin: 20px 0 40px;
   width: 500px;
+  
 }
 .form_control input:valid {
   outline: 0;
   border-color: #8093f1;
 }
 .form_control label {
-  position: absolute;
+  
   margin-bottom: 2px;
   left: 0;
 }
@@ -148,6 +152,29 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
 
 ::placeholder {
   color: rgb(50, 43, 43);
+}
+
+.inputDate{
+margin-top: 5px;
+margin-top: 5px;
+}
+
+.duration{
+margin-top: 5px;
+margin-top: 5px;
+}
+.options{
+  display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(50%,1fr));
+    margin-bottom: 25px;
+}
+
+.option{
+  margin: 5px;
+  width: 600px;
+}
+.form_control .ques{
+  width:500px
 }
 
 h1 {
