@@ -4,6 +4,11 @@
 
   margin: 0 auto;
 }
+
+.contain {
+  color: black;
+}
+
 .heading {
   text-align: center;
 }
@@ -23,5 +28,4 @@
   border-radius: 4px;
   padding: 1% 1%;
   display: block;
-  color: white;
 }

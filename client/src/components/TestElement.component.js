@@ -4,7 +4,9 @@ import { Link, Route } from "react-router-dom";
 import styles from "../componentsStyles/Testelement.module.css";
 
 function Testelement(props) {
-  let expiry = new Date(props.expiry);
+  let expiry = props.data.endDate;
+  let date = new Date(expiry);
+  console.log(props);
   return (
     <Fragment>
       <Link
@@ -16,31 +18,25 @@ function Testelement(props) {
             <span className={styles.mobileinfo}>
               <strong>Pin : </strong>
             </span>
-            {props.pin}
-          </div>
-          <div className={styles.element}>
-            <span className={styles.mobileinfo}>
-              <strong>Topic : </strong>
-            </span>
-            {props.topicname}
+            {props.data.pin}
           </div>
           <div className={styles.element}>
             <span className={styles.mobileinfo}>
               <strong>No. of Ques : </strong>
             </span>
-            {props.amount}
+            {props.data.questions.length}
           </div>
           <div className={styles.element}>
             <span className={styles.mobileinfo}>
               <strong>Time Duration (Mins) : </strong>
             </span>
-            {props.time} mins
+            {props.data.duration} mins
           </div>
           <div className={styles.element}>
             <span className={styles.mobileinfo}>
               <strong>Expiry : </strong>
             </span>
-            {expiry.getDate()}-{expiry.getMonth()}-{expiry.getFullYear()}
+            {date.toDateString()}
           </div>
         </div>
       </Link>

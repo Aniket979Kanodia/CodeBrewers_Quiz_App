@@ -26,15 +26,14 @@ function Login(props) {
         options
       )
       .then((res) => {
-        console.log(res);
         localStorage.setItem("loggedin", true);
         localStorage.setItem("auth-token", res.headers["auth-token"]);
         localStorage.setItem("name", res.data.name);
+        localStorage.setItem("email", email);
         props.setloggedin(true);
         history.push("/dashboard");
       })
       .catch((err) => {
-        console.log(err);
         alert("Wrong Credentials!");
       });
   };

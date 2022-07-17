@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "../componentsStyles/QuestionForm.module.css";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Axios from "axios";
 
 const QuestionForm = () => {
+  let history = useHistory();
   const [duration, setduration] = useState("");
   const [endDate, setendDate] = useState("");
   const [num, setnum] = useState(0);
@@ -66,18 +68,24 @@ const QuestionForm = () => {
       duration: duration,
       endDate: endDate,
       questions: questions,
+      email: localStorage.getItem("email"),
     };
     const response = await fetch("http://localhost:5000/api/test/addtest", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("auth-token"),
       },
       body: JSON.stringify(obj),
     });
+    history.push("/dashboard");
   }
   return (
     <div className={styles.form}>
-      <div className={styles.form_header}>  <h1>Add Test</h1></div>
+      <div className={styles.form_header}>
+        {" "}
+        <h1>Add Test</h1>
+      </div>
       <div className={styles.testDetails}>
         <label>
           <div className={styles.Labels}>Last Date of Submition:</div>
@@ -91,8 +99,8 @@ const QuestionForm = () => {
             className={styles.inputDate}
           />
         </label>
-        
-          <div className={styles.form_control}>
+
+        <div className={styles.form_control}>
           {/* <label>
           Duration</label> */}
           <input
@@ -105,8 +113,7 @@ const QuestionForm = () => {
             className={styles.duration}
             placeholder="Duration"
           />
-          </div>
-        
+        </div>
       </div>
       <div className={styles.questionSlot}>
         <h3>Questions</h3>
@@ -121,23 +128,23 @@ const QuestionForm = () => {
                 placeholder="Question Description"
                 value={ele.question}
               />
-              
-                {ele.options.map((element, index) => {
-                  return (
-                    <div>
-                      <input
-                        className={styles.optionTag}
-                        onChange={(e) => {
-                          optionSet(id, e.target.value, index);
-                        }}
-                        type="text"
-                        placeholder={"option " + `${index + 1}`}
-                        value={element}
-                      />
-                    </div>
-                  );
-                })}
-              
+
+              {ele.options.map((element, index) => {
+                return (
+                  <div>
+                    <input
+                      className={styles.optionTag}
+                      onChange={(e) => {
+                        optionSet(id, e.target.value, index);
+                      }}
+                      type="text"
+                      placeholder={"option " + `${index + 1}`}
+                      value={element}
+                    />
+                  </div>
+                );
+              })}
+
               <select
                 onChange={(e) => {
                   answer(e.target.value, id);
@@ -167,9 +174,15 @@ const QuestionForm = () => {
     </div>
   );
 };
-const labels = document.querySelectorAll('.form-control label');
+const labels = document.querySelectorAll(".form-control label");
 
-labels.forEach(label => {
-    label.innerHTML = label.innerText.split('').map((letter, idx) => `<span style="transition-delay: ${idx  * 50}ms">${letter}</span>`).join('')
-})
+labels.forEach((label) => {
+  label.innerHTML = label.innerText
+    .split("")
+    .map(
+      (letter, idx) =>
+        `<span style="transition-delay: ${idx * 50}ms">${letter}</span>`
+    )
+    .join("");
+});
 export default QuestionForm;

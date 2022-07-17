@@ -7,10 +7,11 @@ import styles from "../componentsStyles/Dashboard.module.css";
 import resultstyles from "../componentsStyles/TestResult.module.css";
 
 function Testresult(props) {
+  console.log(props.location.state.data);
   let history = useHistory();
 
   const [result, setresult] = useState([]);
-  let expiry = new Date(props.location.state.expiry);
+  let expiry = new Date(props.location.state.data.endDate);
 
   useEffect(() => {
     const options = {
@@ -22,12 +23,11 @@ function Testresult(props) {
     axios
       .post(
         "http://localhost:5000/api/test/getresults",
-        { pin: props.location.state.pin },
+        { pin: props.location.state.data.pin },
         options
       )
       .then((res) => setresult(res.data))
       .catch((err) => {
-        console.log(err);
         alert("Couldn't Fetch!");
         history.push("/dashboard");
       });
@@ -56,13 +56,13 @@ function Testresult(props) {
       <div className={teststyles.container}>
         <div className={resultstyles.info}>
           <h1 style={{ textAlign: "center" }}> About Test</h1>
-          <strong>Pin: </strong> {props.location.state.pin}
+          <strong>Pin: </strong> {props.location.state.data.pin}
           <br />
-          <strong>Topic: </strong> {props.location.state.topicname}
+          <strong>No. of Ques: </strong>{" "}
+          {props.location.state.data.questions.length}
           <br />
-          <strong>No. of Ques: </strong> {props.location.state.amount}
+          <strong>Time Duration: </strong> {props.location.state.data.duration}{" "}
           <br />
-          <strong>Time Duration: </strong> {props.location.state.time} <br />
           <strong>Expiry: </strong> {expiry.getDate()}-{expiry.getMonth()}-
           {expiry.getFullYear()}
           <br />

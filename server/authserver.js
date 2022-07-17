@@ -20,9 +20,7 @@ mongoose.connect(uri, {
   useUnifiedTopology: true,
 });
 
-mongoose.connection.once("open", () => {
-  console.log("connection established successfully");
-});
+mongoose.connection.once("open", () => {});
 
 const userRouter = require("./routes/user");
 const testRouter = require("./routes/test");
@@ -46,21 +44,6 @@ const testSchema = new mongoose.Schema({
     },
   ],
 });
-
-app.use("/testing", async (req, res) => {
-  console.log(req.body);
-  const test = await testSchema.findOne({
-    endDate: req.body.endDate,
-    duration: req.body.duration,
-    questions: req.body.questions,
-  });
-  if (test) {
-    res.send("test already exists");
-  } else {
-    res.send("test not exists");
-  }
-});
-
 if (
   process.env.NODE_ENV === "production" ||
   process.env.NODE_ENV === "staging"

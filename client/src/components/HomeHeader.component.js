@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 
 function Header(props) {
   let location = useLocation();
-  console.log(location.pathname);
+  // console.log(location.pathname);
   if (localStorage.getItem("loggedin")) props.setloggedin(true);
 
   return (

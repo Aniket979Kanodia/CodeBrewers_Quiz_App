@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { useContext } from "react";
 import "../componentsStyles/TestWindow.component.css";
+import { useHistory } from "react-router-dom";
 
 const TestWindow = () => {
+  let history = useHistory();
   const [Questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [optionChosen, setOptionChosen] = useState("");
@@ -20,18 +22,40 @@ const TestWindow = () => {
 
   const finishQuiz = () => {
     if (Questions[currentQuestion].correct_answer == optionChosen) {
+      console.log(optionChosen);
       setScore(score + 1);
     }
-    console.log(score);
+    let obj = {
+      name: localStorage.getItem("name"),
+      email: localStorage.getItem("email"),
+      pin: localStorage.getItem("pin"),
+      score: score,
+    };
+    Axios.post("http://localhost:5000/api/test/submittest", obj)
+      .then((res) => {
+        console.log(res);
+        console.log("done");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   useEffect(() => {
     async function collect() {
-      const res = await Axios.post("http://localhost:5000/api/test/nakul", {
-        pin: "47373440000",
-      });
-      if (res) {
+      let obj = {
+        pin: localStorage.getItem("pin"),
+        email: localStorage.getItem("email"),
+        name: localStorage.getItem("name"),
+      };
+      let res = await Axios.post(
+        "http://localhost:5000/api/test/getQuestions",
+        obj
+      );
+      if (res.status === 200) {
         setQuestions(res.data.questions);
-        console.log(res.data.questions);
+      } else {
+        alert("error");
+        history.push("/");
       }
     }
     collect();

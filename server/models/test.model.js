@@ -3,20 +3,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const testSchema = new mongoose.Schema({
-  //pin is primary key
   pin: {
     type: String,
     required: true,
     unique: true,
   },
-
-  // testId: Number,
-  // startTime: Date,
+  email: String,
   endDate: Date,
   duration: String,
-  //response_code: Number,
-  // adminId: Number,
-  // users: Number,
   questions: [
     {
       options: Array,

@@ -5,8 +5,8 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("connection successful....."))
-  .catch((err) => console.log(err));
+  .then()
+  .catch();
 
 const adminSchema = new mongoose.Schema({
   name: String,

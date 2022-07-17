@@ -11,7 +11,6 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/add").post(async (req, res) => {
-  console.log(req.body);
   try {
     const name = req.body.name;
     const email = req.body.email.toLowerCase();
@@ -33,7 +32,6 @@ router.route("/add").post(async (req, res) => {
 });
 
 router.route("/login").post(async (req, res) => {
-  console.log(req.body);
   const email = req.body.email.toLowerCase();
   const password = req.body.password;
 

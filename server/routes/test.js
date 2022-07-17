@@ -5,9 +5,16 @@ const axios = require("axios");
 const verify = require("./verifyToken");
 const mongoose = require("mongoose");
 
-router.route("/nakul").post(async (req, res) => {
-  console.log(req.body);
+router.route("/getQuestions").post(async (req, res) => {
+  var testid = req.body.pin;
+  var email = req.body.email;
+  console.log(testid, email);
+  const check = await result.findOne({ pin: testid, email }).exec();
+  if (check) {
+    return res.status(400).send({ message: "Test already taken!" });
+  }
   const temp = await test.findOne({ pin: req.body.pin }).exec();
+
   if (!temp) {
     return res.status(400).send({ message: "Test doesn't exist!" });
   }
@@ -35,9 +42,9 @@ router.route("/submittest").post(async (req, res) => {
     .catch((err) => res.status(400).json("error : " + err));
 });
 
-// router.use("/gettests", verify);
-// router.use("/getresults", verify);
-// router.use("/addtest", verify);
+router.use("/gettests", verify);
+router.use("/getresults", verify);
+router.use("/addtest", verify);
 
 router.route("/gettests").post(async (req, res) => {
   const email = req.user.email;
@@ -45,7 +52,6 @@ router.route("/gettests").post(async (req, res) => {
     const doc = await test.find({ email }).sort("-created").exec();
     return res.send(doc);
   } catch (err) {
-    console.log(err);
     return res.status(400).send();
   }
 });
@@ -62,17 +68,20 @@ router.route("/getresults").post(async (req, res) => {
 
 router.route("/addtest").post(async (req, res) => {
   var last = await test.find({}).sort("-pin").limit(1).exec();
-  var pin = parseInt(last[0].pin) + 10000;
-
+  var pin;
+  if (last.length == 0) {
+    pin = 10000;
+  } else pin = parseInt(last[0].pin) + 10000;
   try {
     var obj = {
       ...req.body,
       pin: pin,
     };
+    // console.log(obj);
     await test.create(obj);
   } catch (err) {
     console.log(err);
-    return res.status(400).send();
+    return res.status(400).send("error : " + err);
   }
   return res.send("test added!");
 });

@@ -4,7 +4,7 @@ import TestNav from "./TestNav.component";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-function Question(props) {
+function Question() {
   let history = useHistory();
 
   const res = props.location.state.res;
@@ -49,7 +49,6 @@ function Question(props) {
         history.push("/");
       })
       .catch((err) => console.log(err));
-    console.log(score);
   };
 
   function shuffleArray(array) {
@@ -128,6 +127,7 @@ function Question(props) {
 
   return (
     <Fragment>
+      <h1>hello world</h1>
       <TestNav mins={mins} secs={secs} submithandler={submithandler} />
       <div className={styles.qcontainer}>
         {ques + 1}. {question}

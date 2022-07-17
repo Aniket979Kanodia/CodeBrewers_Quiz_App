@@ -18,19 +18,20 @@ function Taketest() {
       },
     };
     axios
-      .post("http://localhost:5000/api/test/", { pin, email, name }, options)
+      .post(
+        "http://localhost:5000/api/test/getQuestions",
+        { pin, email, name },
+        options
+      )
       .then((res) => {
         localStorage.setItem("name", name);
         localStorage.setItem("email", email);
         localStorage.setItem("pin", pin);
         console.log("good");
-        history.push({
-          pathname: "/test",
-          state: { res: res.data },
-        });
+        history.push("/test");
       })
       .catch((err) => {
-        alert(err.response.data.message);
+        alert("error");
       });
   };
 

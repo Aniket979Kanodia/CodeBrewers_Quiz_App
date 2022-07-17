@@ -6,7 +6,8 @@ import Taketest from "./components/TakeTest.component";
 import Login from "./components/LoginRegister.component";
 import dashboard from "./components/Dashboard.component";
 import Testresult from "./components/TestResult.component";
-import Ques from "./components/Question.component";
+import QuestionForm from "./components/QuestionForm.component";
+import Ques from "./components/TestWindow.component";
 
 function App() {
   const [loggedin, setloggedin] = useState(false);
@@ -34,6 +35,7 @@ function App() {
             render={() => <Login setloggedin={setloggedin} />}
           />
           <Route exact path="/dashboard" component={dashboard} />
+          <Route exact path="/addTest" component={QuestionForm} />
           <Route exact path="/abouttest" component={Testresult} />
           <Route exact path="/test" component={Ques} />
           <Route render={() => <Redirect to="/" />} />
