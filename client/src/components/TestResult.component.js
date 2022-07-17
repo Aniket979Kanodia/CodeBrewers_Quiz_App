@@ -34,14 +34,6 @@ function Testresult(props) {
   }, []);
   return (
     <Fragment>
-      {/* <div>
-        <h1
-          className={teststyles.heading}
-          style={{ background: "white", fontSize: "2em", padding: "2%" }}
-        >
-          Welcome {localStorage.getItem("name")}
-        </h1>
-      </div> */}
       <button
         className={styles.buttons}
         style={{ float: "left", display: "block" }}

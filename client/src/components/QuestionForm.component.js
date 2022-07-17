@@ -82,18 +82,13 @@ const QuestionForm = () => {
   }
   return (
     <div className={styles.form}>
-      <div class="container">
-        <div class="row justify-content">
-          <div class= "col-md-6 text-center"> <h1>Add Test</h1> </div>
-        </div>
-       
-      <div class="row">
-        <div class="col-md-3">
-        <div className={styles.form_control}>
-          <label>
-            
+      <div className={styles.form_header}>
+        {" "}
+        <h1>Add Test</h1>
+      </div>
+      <div className={styles.testDetails}>
+        <label>
           <div className={styles.Labels}>Last Date of Submition:</div>
-          </label>
           <input
             type="date"
             name=""
@@ -103,19 +98,11 @@ const QuestionForm = () => {
             }}
             className={styles.inputDate}
           />
-          </div>
-          
-          </div>
-        
-        <div class="col-md-3">
-        
+        </label>
 
         <div className={styles.form_control}>
           {/* <label>
           Duration</label> */}
-          <label>
-          <div className={styles.Labels}>Duration:</div>
-          </label>
           <input
             type="number"
             name=""
@@ -124,14 +111,10 @@ const QuestionForm = () => {
               setduration(e.target.value);
             }}
             className={styles.duration}
-            placeholder="00"
+            placeholder="Duration"
           />
         </div>
-        </div>
-        
       </div>
-      </div>
-      
       <div className={styles.questionSlot}>
         <h3>Questions</h3>
         {questions.map((ele, id) => {
@@ -144,14 +127,11 @@ const QuestionForm = () => {
                 type="text"
                 placeholder="Question Description"
                 value={ele.question}
-                className={styles.ques}
               />
-              {/* </div>*/}
-               <div className={styles.options}> 
 
               {ele.options.map((element, index) => {
                 return (
-                  <div className={styles.option}>
+                  <div>
                     <input
                       className={styles.optionTag}
                       onChange={(e) => {
@@ -164,7 +144,7 @@ const QuestionForm = () => {
                   </div>
                 );
               })}
-              </div>
+
               <select
                 onChange={(e) => {
                   answer(e.target.value, id);
@@ -191,8 +171,7 @@ const QuestionForm = () => {
         Add questions
       </button>
       <button onClick={check}> Submit </button>
-      </div>
-    
+    </div>
   );
 };
 const labels = document.querySelectorAll(".form-control label");
