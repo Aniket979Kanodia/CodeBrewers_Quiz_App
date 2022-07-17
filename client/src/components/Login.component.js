@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "../componentsStyles/LoginRegister.module.css";
 import { useHistory } from "react-router-dom";
-import Logo from "../images/TallyLogo.png";
+import Logo from "../images/Login3.png";
 
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -66,7 +66,7 @@ function Login(props) {
           />
           <br />
           <button type="submit" className={styles.buttons}>
-            Login
+            LOGIN
           </button>
           <br />
         </form>

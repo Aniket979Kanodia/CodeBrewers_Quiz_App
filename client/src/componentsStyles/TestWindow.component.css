@@ -12,9 +12,12 @@ button {
 }
 .mainBack {
   height: 1000px;
+  width: 1600px;
   /* background-color: rgb(255, 245, 248);` */
   background-image: url("../images/tally.jpg");
   display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 button:hover {
@@ -30,17 +33,18 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
-  opacity: 70%;
+  margin-top: 40px;
+  opacity: 100%;
 }
 
 h1 {
+  color: white;
   margin-top: 60px;
 }
 
 #nextQuestion {
-  width: 200px;
-  margin-bottom: 60px;
+  width: 150px;
+  margin-bottom: 100px;
 }
 
 h3 {
@@ -52,4 +56,12 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.button-div {
+  display: flex;
+  align-items: center;
+}
+.prev-btn {
+  margin-bottom: 100px;
+  width: 150px;
 }

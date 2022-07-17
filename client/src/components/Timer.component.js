@@ -4,10 +4,10 @@ import { useHistory } from "react-router-dom";
 
 function Timer(props) {
   const [allsecs, setallsecs] = useState(
-    parseInt(props.mins) * 60 + parseInt(props.secs)
+    parseInt(props.mins) * 60 + parseInt(props.sec)
   );
-  const [mins, setmins] = useState(props.mins);
-  const [secs, setsecs] = useState(props.secs);
+  const [mins, setmins] = useState(parseInt(props.mins));
+  const [secs, setsecs] = useState(parseInt(props.sec));
   const [helper, sethelper] = useState(0);
   let history = useHistory();
 
@@ -23,23 +23,22 @@ function Timer(props) {
       setsecs(altsecs);
     }
   };
-  
+
   useEffect(() => {
-      let altmins = Math.floor(allsecs / 60).toString();
-      if (altmins.length == 1) altmins = "0" + altmins;
-      let altsecs = (allsecs % 60).toString();
-      if (altsecs.length == 1) altsecs = "0" + altsecs;
-      setmins(altmins);
-      setsecs(altsecs);
-      return () => {
-        if (window.performance) {
-          if (performance.navigation.type == 1) {
-            alert('reloaded encountered, Submitting the test');
-            props.submithandler();
-          } 
-}
-        
-      };
+    let altmins = Math.floor(allsecs / 60).toString();
+    if (altmins.length == 1) altmins = "0" + altmins;
+    let altsecs = (allsecs % 60).toString();
+    if (altsecs.length == 1) altsecs = "0" + altsecs;
+    setmins(altmins);
+    setsecs(altsecs);
+    // return () => {
+    //   if (window.performance) {
+    //     if (performance.navigation.type == 1) {
+    //       alert("reloaded encountered, Submitting the test");
+    //       props.submithandler();
+    //     }
+    //   }
+    // };
   });
 
   useEffect(() => {
@@ -55,40 +54,51 @@ function Timer(props) {
         justifyContent: "space-around",
         display: "flex",
         flexDirection: "row",
-        width: "100%",
+        alignItems: "center",
+        width: "140px",
+        height: "70px",
+        background: "rgb(162, 85, 249)",
       }}
     >
       <div
         style={{
-          background: "rgb(26, 26, 26, 0.5)",
+          background: "rgb(162, 85, 249)",
           color: "white",
-
-          padding: "2% 2% 2% 2%",
+          // padding: "2% 2% 2% 2%",
           borderRadius: "8px",
         }}
       >
-        <h1 style={{ fontSize: "2.5em" }}>{mins}</h1>
+        <h1
+          style={{ marginTop: "0px", fontSize: "2.5em", marginBottom: "3px" }}
+        >
+          {mins}
+        </h1>
       </div>
       <div
         style={{
-          background: "rgb(26, 26, 26, 0.5)",
+          background: "rgb(162, 85, 249)",
           color: "white",
-
-          padding: "2% 2% 2% 2%",
           borderRadius: "8px",
         }}
       >
-        <h1 style={{ fontSize: "2.5em" }}>:</h1>
+        <h1
+          style={{ marginTop: "0px", fontSize: "2.5em", marginBottom: "3px" }}
+        >
+          :
+        </h1>
       </div>
       <div
         style={{
-          background: "rgb(26, 26, 26, 0.5)",
+          background: "rgb(162, 85, 249)",
           color: "white",
-          padding: "2% 2% 2% 2%",
-          borderRadius: "8px",
+          marginTop: "0px",
         }}
       >
-        <h1 style={{ fontSize: "2.5em" }}>{secs}</h1>
+        <h1
+          style={{ marginTop: "0px", fontSize: "2.5em", marginBottom: "3px" }}
+        >
+          {secs}
+        </h1>
       </div>
     </div>
   );

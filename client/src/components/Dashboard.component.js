@@ -43,14 +43,14 @@ function Dashboard() {
   }
   return (
     <React.Fragment>
-      <div>
+      {/* <div>
         <h1
           className={styles.heading}
           style={{ background: "white", fontSize: "2em", padding: "2%" }}
         >
           Welcome {localStorage.getItem("name")}
         </h1>
-      </div>
+      </div> */}
       <div className={teststyles.parent}>
         <div className={resultstyles.row}>
           <div className={teststyles.element}>

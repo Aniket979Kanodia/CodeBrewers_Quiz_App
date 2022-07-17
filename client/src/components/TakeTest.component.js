@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../componentsStyles/Taketest.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import Logo from "../images/TallyLogo.png";
+import Logo from "../images/TakeTest.png";
 
 function Taketest() {
   let history = useHistory();

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../componentsStyles/LoginRegister.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import Logo from "../images/TallyLogo.png";
+import Logo from "../images/Register.png";
 
 function Register() {
   const [name, setname] = useState("");

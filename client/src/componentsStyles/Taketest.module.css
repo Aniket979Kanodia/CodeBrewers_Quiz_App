@@ -45,9 +45,9 @@ body {
 .buttons {
   float: right;
   margin: 8px 0;
-  background: #4caf50;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  background: rgb(246, 246, 150);
+  /* border: 1px solid #ccc; */
+  border-radius: 10px;
   padding: 3.5% 5%;
   margin-right: 60px;
 }
@@ -65,5 +65,6 @@ body {
 }
 .logoImg {
   width: 400px;
-  margin-left: 7px;
+  margin-left: 5px;
+  margin-bottom: 20px;
 }

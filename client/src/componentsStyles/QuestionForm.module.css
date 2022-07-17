@@ -4,7 +4,7 @@ body {
   background-color: rgb(255, 245, 248);
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 .optionTag {
   border-radius: 10px;
